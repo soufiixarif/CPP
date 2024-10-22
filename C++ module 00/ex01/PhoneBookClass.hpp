@@ -6,10 +6,10 @@
 class PhoneBook{
 private :
     Contact contact[8];
-    // size_t  last_idx;
+    size_t  size;
 public :
     PhoneBook();
     void    AddContact(Contact c, size_t index);
-    // void    SearchContact(size_t index);
+    void    SearchContact();
     void    Exit(void);
 };

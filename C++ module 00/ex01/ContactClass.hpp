@@ -17,4 +17,8 @@ public :
     void SetDarkestSecret(std::string d_Secret);
     void SetPhoneNumber(std::string Ph_Num);
     std::string GetFirstName();
+    std::string GetLastName();
+    std::string GetNickName();
+    std::string GetDarkestSecret();
+    std::string GetPhoneNumber();
 };

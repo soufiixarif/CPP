@@ -19,31 +19,35 @@ int main()
             i = 0;
         std::cout << "enter your commande" << std::endl;
         std::getline(std::cin, input);
-        if (input != "ADD" || input != "SEARCH" || input != "EXIT")
+        if (input != "ADD" && input != "SEARCH" && input != "EXIT")
+        {
+            std::cout << ">" << input << "<" << std::endl;
             std::cout << "please enter a valid commande" << std::endl;
-        if (input == "ADD"){
+        }
+        else if (input == "ADD")// check for empty and full of spaces
+        {
             std::cout << "---- Enter First Name -----" << std::endl;
             std::getline(std::cin, firstName);
             contact.SetFirstName(firstName);
             std::cout << "---- Enter Last Name -----" << std::endl;
             std::getline(std::cin, lastName);
-            contact.SetLastName(firstName);
+            contact.SetLastName(lastName);
             std::cout << "---- Enter Nick Name -----" << std::endl;
             std::getline(std::cin, nickName);
-            contact.SetNickName(firstName);
+            contact.SetNickName(nickName);
             std::cout << "-- Enter Darkest secret --" << std::endl;
             std::getline(std::cin, darkestSecret);
-            contact.SetDarkestSecret(firstName);
+            contact.SetDarkestSecret(darkestSecret);
             std::cout << "--- Enter Phone Number ---" << std::endl;
             std::getline(std::cin, phoneNumber);
-            contact.SetPhoneNumber(firstName);
+            contact.SetPhoneNumber(phoneNumber);
             phonebook.AddContact(contact, i);
             i++;
         }
-        if (input == "SEARCH"){
-
+        else if (input == "SEARCH"){
+            phonebook.SearchContact();
         }
-        if (input == "EXIT")
+        else if (input == "EXIT")
             exit(0);
     }
 }

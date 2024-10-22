@@ -1,0 +1,28 @@
+Given the additional information from the log file, here’s what you should do to recreate the Account.cpp file:
+
+Understand the Constructor and Destructor:
+
+The log file indicates that when accounts are created, they display a message with their index, amount, and the word "created."
+You need to implement the constructor Account(int initial_deposit) to set the initial deposit, assign a unique index to each account, and print this message.
+The destructor should display a message indicating the account index and the amount left, followed by "closed."
+Implement Static Methods and Track Account Totals:
+
+The log shows lines with accounts:, total:, deposits:, and withdrawals:, which indicates that the static methods getNbAccounts(), getTotalAmount(), getNbDeposits(), and getNbWithdrawals() need to keep track of these values globally across all accounts.
+Implement displayAccountsInfos() to print the current totals of accounts, total amount, deposits, and withdrawals, as seen in the log file.
+Create Methods for Deposits and Withdrawals:
+
+The makeDeposit(int deposit) method should add the deposit amount to the account’s balance, increase the count of deposits, and update the static totals. It should also print a log line similar to index:0;p_amount:42;deposit:5;amount:47;nb_deposits:1 showing the previous amount, the deposit, the new amount, and the number of deposits.
+The makeWithdrawal(int withdrawal) method should check if the withdrawal can be made (if there’s enough balance). If successful, it deducts the amount, updates the count of withdrawals, and prints a similar log line to the deposits. If the withdrawal cannot be made (e.g., insufficient funds), it should print a message with "withdrawal
+."
+Implement the Timestamp Feature:
+
+The _displayTimestamp method should generate and print timestamps similar to [19920104_091532]. The date format is YYYYMMDD_HHMMSS, so you need to implement code to get the current system time and print it in this format.
+Implement checkAmount and displayStatus:
+
+The checkAmount method will likely return the current balance of the account.
+The displayStatus method should print the account’s status, showing its index, balance, number of deposits, and withdrawals, matching the patterns from the log.
+Make Sure Everything Matches the Log:
+
+Your goal is to ensure that the output from tests.cpp matches the provided log file (except the timestamps which will be based on when you run the program).
+Look closely at the patterns, such as how deposits and withdrawals are formatted, and implement those precisely.
+By following these steps, you will be able to recreate the missing Account.cpp file and ensure the tests.cpp program runs correctly, producing output that matches the log.
