@@ -1,6 +1,27 @@
 #include "PhoneBookClass.hpp"
 #include "ContactClass.hpp"
 
+
+using std::string;
+
+
+string  prompt(string str)
+{
+    string in;
+    while (1)
+    {
+        std::cout << str << std::endl;
+        std::getline(std::cin, in);
+
+        if (std::cin.eof())
+            exit(0);
+
+        if(!in.empty())
+            return in;
+    }
+}
+
+
 int main()
 {
     PhoneBook phonebook;
@@ -19,6 +40,8 @@ int main()
             i = 0;
         std::cout << "enter your commande" << std::endl;
         std::getline(std::cin, input);
+        if (std::cin.eof())
+            exit(0);
         if (input != "ADD" && input != "SEARCH" && input != "EXIT")
         {
             std::cout << ">" << input << "<" << std::endl;
@@ -26,21 +49,11 @@ int main()
         }
         else if (input == "ADD")// check for empty and full of spaces
         {
-            std::cout << "---- Enter First Name -----" << std::endl;
-            std::getline(std::cin, firstName);
-            contact.SetFirstName(firstName);
-            std::cout << "---- Enter Last Name -----" << std::endl;
-            std::getline(std::cin, lastName);
-            contact.SetLastName(lastName);
-            std::cout << "---- Enter Nick Name -----" << std::endl;
-            std::getline(std::cin, nickName);
-            contact.SetNickName(nickName);
-            std::cout << "-- Enter Darkest secret --" << std::endl;
-            std::getline(std::cin, darkestSecret);
-            contact.SetDarkestSecret(darkestSecret);
-            std::cout << "--- Enter Phone Number ---" << std::endl;
-            std::getline(std::cin, phoneNumber);
-            contact.SetPhoneNumber(phoneNumber);
+            contact.SetFirstName(prompt("---- Enter First Name -----"));
+            contact.SetLastName(prompt("---- Enter Last Name -----"));
+            contact.SetNickName(prompt("---- Enter Nick Name -----"));
+            contact.SetDarkestSecret(prompt("-- Enter Darkest secret --"));
+            contact.SetPhoneNumber(prompt("--- Enter Phone Number ---"));
             phonebook.AddContact(contact, i);
             i++;
         }

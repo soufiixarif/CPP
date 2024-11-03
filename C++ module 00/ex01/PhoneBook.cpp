@@ -1,8 +1,7 @@
 #include "PhoneBookClass.hpp"
 #include "ContactClass.hpp"
 
-Contact::Contact()
-{
+Contact::Contact(){
 
 }
 
@@ -94,6 +93,8 @@ void PhoneBook::SearchContact(){
     else{
         std::cout << "enter the index of contact you want to display" << std::endl;
         std::getline(std::cin, input);
+        if (std::cin.eof())
+            exit(0);
         index = ft_itoa(input);
         if(index == -1)
             return;
