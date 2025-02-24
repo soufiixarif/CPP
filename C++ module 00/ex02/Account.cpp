@@ -9,10 +9,10 @@ int	Account::_totalNbWithdrawals = 0;
 
 void	Account::_displayTimestamp( void ){
     time_t timestamp = time(NULL);
-    struct tm datetime = *localtime(&timestamp);
+    struct tm *datetime = localtime(&timestamp);
     char output[50];
 
-    strftime(output, 50, "[%Y%m%d_%I%M%S] ", &datetime);
+    strftime(output, 50, "[%Y%m%d_%I%M%S] ", datetime);
     std::cout << output;
 }
 

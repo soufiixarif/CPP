@@ -1,8 +1,8 @@
 #include "PhoneBookClass.hpp"
+#include <sstream>
 #include "ContactClass.hpp"
 
 Contact::Contact(){
-
 }
 
 PhoneBook::PhoneBook()
@@ -63,14 +63,13 @@ void PhoneBook::AddContact(Contact c, size_t index){
     if(this->size < 8)
         this->size++;
 }
-#include <sstream>
 
-int ft_itoa(std::string str) {
+size_t ft_itoa(std::string str, size_t size) {
     std::stringstream ss(str);
 
-    int num;
+    size_t num;
     ss >> num;
-    if (ss.fail() || num > 7 || num < 0){
+    if (ss.fail() || num > (size - 1) || num < 0){
         std::cout << "inter a valid number" << std::endl;
         return(-1);
     }
@@ -92,20 +91,23 @@ void PhoneBook::SearchContact(){
         std::cout << "contact list empty" << std::endl;
     else{
         std::cout << "enter the index of contact you want to display" << std::endl;
-        std::getline(std::cin, input);
-        if (std::cin.eof())
-            exit(0);
-        index = ft_itoa(input);
-        if(index == -1)
-            return;
-        else{
-            std::cout << "Contact Details:" << std::endl;
-            std::cout << "First Name: " << contact[index].GetFirstName() << std::endl;
-            std::cout << "Last Name: " << contact[index].GetLastName() << std::endl;
-            std::cout << "Nick Name: " << contact[index].GetNickName() << std::endl;
-            std::cout << "Darkest Secret: " << contact[index].GetDarkestSecret() << std::endl;
-            std::cout << "Phone Number: " << contact[index].GetPhoneNumber() << std::endl;
+        while(1)
+        {
+            std::getline(std::cin, input);
+            if (std::cin.eof())
+                exit(0);
+            index = ft_itoa(input, size);
+            if(index == -1)
+                continue;
+            else
+                break ;
         }
+        std::cout << "Contact Details:" << std::endl;
+        std::cout << "First Name: " << contact[index].GetFirstName() << std::endl;
+        std::cout << "Last Name: " << contact[index].GetLastName() << std::endl;
+        std::cout << "Nick Name: " << contact[index].GetNickName() << std::endl;
+        std::cout << "Darkest Secret: " << contact[index].GetDarkestSecret() << std::endl;
+        std::cout << "Phone Number: " << contact[index].GetPhoneNumber() << std::endl;
     }
     return ;
 }

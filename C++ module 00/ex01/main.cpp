@@ -4,6 +4,13 @@
 
 using std::string;
 
+int full_of_space(string in)
+{
+    for (int i = 0; in[i]; i++)
+        if (in[i] != ' ')
+            return(0);
+    return (1);
+}
 
 string  prompt(string str)
 {
@@ -16,7 +23,7 @@ string  prompt(string str)
         if (std::cin.eof())
             exit(0);
 
-        if(!in.empty())
+        if(!in.empty() && !full_of_space(in))
             return in;
     }
 }
@@ -36,17 +43,14 @@ int main()
 
     std::cout << "=====> Soufiix Phone <=====" << std::endl;
     while (1){
-        if (i == 7)
+        if (i == 8)
             i = 0;
         std::cout << "enter your commande" << std::endl;
         std::getline(std::cin, input);
         if (std::cin.eof())
             exit(0);
         if (input != "ADD" && input != "SEARCH" && input != "EXIT")
-        {
-            std::cout << ">" << input << "<" << std::endl;
-            std::cout << "please enter a valid commande" << std::endl;
-        }
+            std::cout << "please enter a valid commande: ADD or SEARCH or EXIT" << std::endl;
         else if (input == "ADD")// check for empty and full of spaces
         {
             contact.SetFirstName(prompt("---- Enter First Name -----"));
