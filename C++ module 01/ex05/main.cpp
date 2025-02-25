@@ -2,11 +2,11 @@
 
 int main() {
     Harl harl;
-    harl.complain("DEBUG");    // Should print "Debug mode on"
-    // harl.complain("INFO");     // Should print "Information mode"
-    // harl.complain("WARNING");  // Should print "Warning mode"
-    // harl.complain("ERROR");    // Should print "Error mode"
-    // harl.complain("UNKNOWN");  // Should print "khroj t9awed"
+    harl.complain("DEBUG");
+    // harl.complain("INFO");
+    // harl.complain("WARNING");
+    // harl.complain("ERROR");
+    // harl.complain("UNKNOWN");
 
     return 0;
 }

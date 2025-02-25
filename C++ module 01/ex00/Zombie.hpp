@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 
 class Zombie{
@@ -7,7 +8,7 @@ public :
     Zombie();
     void setName(std::string name);
     std::string getName(void);
-    void  announce(void); 
+    void  announce(void);
     ~Zombie();
 };
 

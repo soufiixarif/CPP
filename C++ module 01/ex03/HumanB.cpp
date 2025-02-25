@@ -4,7 +4,7 @@
 HumanB::HumanB(std::string name): name(name){
 }
 
-void HumanB::setWeapon(Weapon weapon){
+void HumanB::setWeapon(Weapon &weapon){
     this->weapon = &weapon;
 }
 void HumanB::setNAme(std::string name){

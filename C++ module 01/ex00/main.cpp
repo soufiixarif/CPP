@@ -3,9 +3,9 @@
 int main(){
     Zombie *zombie;
 
-    randomChump("khorag");
-    zombie = newZombie("zogrom");
+    zombie = newZombie("zogromHeap");
     zombie->announce();
+    randomChump("ZombiStack");
 
     delete(zombie);
 }
