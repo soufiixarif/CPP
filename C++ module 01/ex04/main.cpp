@@ -1,22 +1,28 @@
 #include <iostream>
 #include <fstream>
 
-std::string SearchReplace(std::string content, std::string to_find, std::string to_replace)
+int SearchReplace(std::string inputName, std::string content, std::string to_find, std::string to_replace)
 {
-    size_t i = 0;
-    std::string front;
-    std::string back;
-    int len = to_find.length();
-    
-    while(content.find(to_find) != std::string::npos){
-        i = content.find(to_find);
-        front = content.substr(0, i);
-        back = content.substr(i + len,content.length());
-        content = front;
-        content += to_replace;
-        content += back;
+    inputName.append(".replace");
+    std::ofstream output(inputName);
+    if(!output.is_open()){
+        std::cout << "failed to open the output file" << std::endl;
+        return (1);
     }
-    return (content);
+    if (to_find.empty()){
+        std::cout << "to_find is empty" << std::endl; 
+        return (1);
+    }
+    size_t i = 0;
+    size_t position = content.find(to_find, i);
+    while(position != std::string::npos){
+        output << content.substr(i, position - i) << to_replace;
+        i = position + to_find.length();
+        position = content.find(to_find, i);
+    }
+    output << content.substr(i);
+    output.close();
+    return (0);
 }
 
 int main(int ac, char **av) {
@@ -26,21 +32,23 @@ int main(int ac, char **av) {
     }
     std::ifstream file(av[1]);
     std::string line;
-    std::string content;
     std::string to_find = av[2];
     std::string to_replace = av[3];
+    std::string content;
     
     if (!file.is_open()){
         std::cerr << "File can't open please enter a valide file" << std::endl;
         return (1);
     }
 
-    while (getline(file, line))
-            content += line;
-
+    while (getline(file, line)){
+        content.append(line);
+        if (!file.eof())
+            content.append("\n");
+    }
     file.close();
 
-    content = SearchReplace(content, to_find, to_replace);
-    std::cout << "Result: " << content;
+    if (SearchReplace(av[1], content, to_find, to_replace))
+        return (1);
     return 0;
 }
