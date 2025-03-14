@@ -4,6 +4,11 @@ Fixed::Fixed(){
     std::cout << "Default constructor called" << std::endl;
     this->raw = 0;
 }
+
+Fixed::~Fixed(){
+    std::cout << "Destructor called" << std::endl;
+}
+
 Fixed::Fixed(Fixed& copy){
 
     std::cout << "Copy constructor called" << std::endl;

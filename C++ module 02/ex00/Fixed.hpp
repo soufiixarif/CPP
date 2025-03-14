@@ -10,7 +10,5 @@ public:
     Fixed &    operator=(const Fixed& op);
     int getRawBits( void ) const;
     void setRawBits( int const raw );
-    ~Fixed(){
-        std::cout << "Destructor called" << std::endl;
-    }
+    ~Fixed();
 };
