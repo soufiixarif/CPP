@@ -7,8 +7,8 @@ private:
 public:
     Fixed();
     Fixed(const Fixed& other);
-    Fixed(const int &n);
-    Fixed(const float &f);
+    Fixed(const int &n); // ask about the &
+    Fixed(const float &f); // ask about the &
     Fixed &    operator=(const Fixed& other);
     int getRawBits( void ) const;
     void setRawBits( int const raw );
