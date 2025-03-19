@@ -9,7 +9,7 @@ private:
 public:
     Fixed();
     Fixed(const Fixed& other);
-    Fixed(const int &n); // must be reference 
+    Fixed(const int &n);
     Fixed(const float &f);
     Fixed &    operator=(const Fixed& other);
     int getRawBits( void ) const;
