@@ -5,16 +5,16 @@ Fixed::Fixed(){
 }
 
 Fixed::Fixed(const int &n): raw(n << fractionalBits){
-} 
-
-Fixed::Fixed(const float &f): raw(roundf(f * (1 << fractionalBits))){
+    
+}
+#include <iomanip>
+Fixed::Fixed(const float &f): raw(roundf(f * (float)(1 << fractionalBits))){
 }
 
 Fixed::~Fixed(){
 }
 
 Fixed::Fixed(const Fixed& other) {
-    //is this != other
     *this = other;
 }
 Fixed&    Fixed::operator=(const Fixed& other){
@@ -42,43 +42,43 @@ std::ostream &operator<<(std::ostream &out, const Fixed &fixed) {
     return out;
 }
 
-Fixed Fixed::operator+(const Fixed &other){
+Fixed Fixed::operator+(const Fixed &other) const{
     return Fixed(this->toFloat() + other.toFloat());
 }
 
-Fixed Fixed::operator-(const Fixed &other){
+Fixed Fixed::operator-(const Fixed &other) const{
     return Fixed(this->toFloat() - other.toFloat());
 }
 
-Fixed Fixed::operator*(const Fixed &other){
+Fixed Fixed::operator*(const Fixed &other) const{
     return Fixed(this->toFloat() * other.toFloat());
 }
 
-Fixed Fixed::operator/(const Fixed &other){
+Fixed Fixed::operator/(const Fixed &other) const{
     return Fixed(this->toFloat() / other.toFloat());
 }
 
-bool Fixed::operator>(const Fixed &other)const{
+bool Fixed::operator>(const Fixed &other) const{
     return (this->toFloat() > other.toFloat());
 }
 
-bool Fixed::operator<(const Fixed &other)const{
+bool Fixed::operator<(const Fixed &other) const{
     return (this->toFloat() < other.toFloat());
 }
 
-bool Fixed::operator>=(const Fixed &other){
+bool Fixed::operator>=(const Fixed &other) const{
     return (this->toFloat() >= other.toFloat());
 }
 
-bool Fixed::operator<=(const Fixed &other){
+bool Fixed::operator<=(const Fixed &other) const{
     return (this->toFloat() <= other.toFloat());
 }
 
-bool Fixed::operator==(const Fixed &other){
+bool Fixed::operator==(const Fixed &other) const{
     return (this->toFloat() == other.toFloat());
 }
 
-bool Fixed::operator!=(const Fixed &other){
+bool Fixed::operator!=(const Fixed &other) const{
     return (this->toFloat() != other.toFloat());
 }
 

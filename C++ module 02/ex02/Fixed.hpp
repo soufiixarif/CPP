@@ -1,4 +1,6 @@
+#pragma once
 #include <iostream>
+
 
 class Fixed{
 private:
@@ -7,23 +9,23 @@ private:
 public:
     Fixed();
     Fixed(const Fixed& other);
-    Fixed(const int &n); // ask about the &
-    Fixed(const float &f); // ask about the &
+    Fixed(const int &n); // must be reference 
+    Fixed(const float &f);
     Fixed &    operator=(const Fixed& other);
     int getRawBits( void ) const;
     void setRawBits( int const raw );
     float toFloat( void ) const;
     int toInt( void ) const;
-    Fixed operator+(const Fixed &other);
-    Fixed operator-(const Fixed &other);
-    Fixed operator*(const Fixed &other);
-    Fixed operator/(const Fixed &other);
-    bool operator>(const Fixed &other)const;
-    bool operator<(const Fixed &other)const;
-    bool operator>=(const Fixed &other);
-    bool operator<=(const Fixed &other);
-    bool operator==(const Fixed &other);
-    bool operator!=(const Fixed &other);
+    Fixed operator+(const Fixed &other) const;
+    Fixed operator-(const Fixed &other) const;
+    Fixed operator*(const Fixed &other) const;
+    Fixed operator/(const Fixed &other) const;
+    bool operator>(const Fixed &other) const;
+    bool operator<(const Fixed &other) const;
+    bool operator>=(const Fixed &other) const;
+    bool operator<=(const Fixed &other) const;
+    bool operator==(const Fixed &other) const;  
+    bool operator!=(const Fixed &other) const;
     Fixed &operator++();
     Fixed operator++(int);
     Fixed &operator--();
