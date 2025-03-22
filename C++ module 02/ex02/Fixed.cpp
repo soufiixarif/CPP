@@ -5,7 +5,6 @@ Fixed::Fixed(){
 }
 
 Fixed::Fixed(const int &n): raw(n << fractionalBits){
-    
 }
 #include <iomanip>
 Fixed::Fixed(const float &f): raw(roundf(f * (float)(1 << fractionalBits))){
