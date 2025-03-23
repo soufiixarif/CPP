@@ -1,6 +1,6 @@
 #include "ClapTrap.hpp"
 
-class ScavTrap : ClapTrap{
+class ScavTrap : public ClapTrap{
     public :
         ScavTrap();
         ScavTrap(ScavTrap &other);
@@ -8,4 +8,5 @@ class ScavTrap : ClapTrap{
         ~ScavTrap();
         ScavTrap(std::string name);
         void guardGate();
+        void attack(const std::string &target);
 };
