@@ -1,5 +1,5 @@
 NAME = interface
-SRC = main.cpp AMateria.cpp Cure.cpp Ice.hpp ICharacter.cpp IMateriaSource.cpp MateriaSource.cpp Character.cpp
+SRC = main.cpp AMateria.cpp Cure.cpp Ice.cpp ICharacter.cpp IMateriaSource.cpp MateriaSource.cpp Character.cpp
 INCLUDES = AMateria.hpp Cure.hpp Ice.hpp ICharacter.hpp IMateriaSource.hpp MateriaSource.hpp Character.hpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
