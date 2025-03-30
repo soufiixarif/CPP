@@ -19,7 +19,7 @@ Cat &Cat::operator=(const Cat &other){
 
 Cat::Cat(const Cat &other){
     std::cout << "Cat copy constractor called" << std::endl;
-    this->brain = NULL;
+    this->brain = NULL;// no need
     *this = other;
 }
 

@@ -1,7 +1,7 @@
 #include "Cure.hpp"
 
 Cure::Cure(){
-    this->type = "Cure";
+    this->type = "cure";
 }
 
 Cure &Cure::operator=(const Cure &other){

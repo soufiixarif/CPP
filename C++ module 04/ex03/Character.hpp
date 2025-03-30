@@ -2,6 +2,10 @@
 #include "ICharacter.hpp"
 
 class  Character : public ICharacter{
+    private:
+        std::string name;
+        AMateria *inventory[4];
+        AMateria **garbage;// add it 
     public:
         Character();
         Character &operator=(const Character &other);

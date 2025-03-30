@@ -2,15 +2,17 @@
 
 MateriaSource::MateriaSource(){
     for (int i = 0; i < 4; i++){
-        this->inventory[i] = nullptr;
+        this->inventory[i] = NULL;
     }
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &other){
-    for(int i = 0; i < 4; i++)
-        delete this->inventory[i];
-    for (int i = 0; i < 4; i++)
-        this->inventory[i] = other.inventory[i]->clone();
+    if (this != &other){
+        for(int i = 0; i < 4; i++)
+            delete this->inventory[i];
+        for (int i = 0; i < 4; i++)
+            this->inventory[i] = other.inventory[i]->clone();
+    }
     return (*this);
 }
 
@@ -32,10 +34,11 @@ void MateriaSource::learnMateria(AMateria *materia){
     }
 }
 
-AMateria *MateriaSource::createMateria(std::string const &tyoe){
+AMateria *MateriaSource::createMateria(std::string const &type){
     for (int i = 0; i < 4; i++){
-        if (inventory[i] && inventory[i]->getType() == tyoe)
-            return (inventory[i]->clone()); 
+        if (inventory[i] && inventory[i]->getType() == type){
+            return (inventory[i]->clone());
+        }
     }
-    return nullptr;
+    return NULL;
 }
