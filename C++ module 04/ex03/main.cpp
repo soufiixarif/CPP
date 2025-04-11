@@ -6,12 +6,12 @@
 #include "Cure.hpp"
 #include "Ice.hpp"
 
-void f(){
-    system("leaks interface");
-}
+// void f(){
+//     system("leaks interface");
+// }
 int main()
 {
-    atexit(f);
+    // atexit(f);
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
@@ -29,9 +29,9 @@ int main()
     delete bob;
     delete me;
     delete src;
-    // Character test;
-    // test.equip(new Cure());
-    // Character *test1 = &test;
-    // test = *test1;
+    Character test;
+    test.equip(new Cure());
+    Character *test1 = &test;
+    test = *test1;
     return 0;
 }

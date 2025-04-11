@@ -3,7 +3,7 @@ SRC = main.cpp  Animal.cpp Cat.cpp Dog.cpp WrongCat.cpp WrongAnimal.cpp Brain.cp
 INCLUDES = Animal.hpp Cat.hpp Dog.hpp WrongCat.hpp WrongAnimal.hpp Brain.hpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address -g
 
 all : $(NAME)
 

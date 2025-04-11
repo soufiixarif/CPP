@@ -11,7 +11,12 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other){
         for(int i = 0; i < 4; i++)
             delete this->inventory[i];
         for (int i = 0; i < 4; i++)
-            this->inventory[i] = other.inventory[i]->clone();
+        {
+            if (other.inventory[i])
+                this->inventory[i] = other.inventory[i]->clone();
+            else
+                this->inventory[i] = NULL;
+        }
     }
     return (*this);
 }

@@ -20,5 +20,6 @@ Brain::~Brain(){
 }
 
 void Brain::setIdeas(unsigned int i, std::string idea){
-    this->ideas[i] = idea;
+    if (i < 100)
+        this->ideas[i] = idea;
 }
