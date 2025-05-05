@@ -63,8 +63,8 @@ const char *AForm::formNotSigned::what() const throw(){
     return "form not signed!";
 }
 
-std::ostream& operator<<(std::ostream &out, const AForm &_AForm){
-    out << "AForm " << _AForm.getName() << " grade to signe: " << _AForm.getGradeToSign() << " grade to execute: " << _AForm.getGradeToExecute() << " his status is ";
-    out << ((_AForm.getSign()) ? "signed" : "not signed") << std::endl;
+std::ostream& operator<<(std::ostream &out, const AForm &other){
+    out << "The Form " << other.getName() << " grade to signe: " << other.getGradeToSign() << " grade to execute: " << other.getGradeToExecute() << std::endl\
+     << "The form is: " << ((other.getSign()) ? "signed" : "not signed");
     return out;
 }

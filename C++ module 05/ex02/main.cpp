@@ -5,35 +5,20 @@
 #include "PresidentialPardonForm.hpp"
 
 int main(){
-    Bureaucrat soufiix("soufiix", 6);
-    std::string target = "kaghit";
-    // RobotomyRequestForm robo(target);
-    PresidentialPardonForm haha(target);
+    std::string target = "Arif";
+    Bureaucrat soufiix("soufiix", 138);
 
-    soufiix.signForm(haha);
+    ShrubberyCreationForm wati9a1(target);
+
+    soufiix.signForm(wati9a1);
+    soufiix.increment();
     try{
-        soufiix.executeForm(haha);
-    } catch (const Bureaucrat::GradeTooLowException &e){
+        soufiix.executeForm(wati9a1);
+    }catch (const AForm::formNotSigned &e){
+        std::cerr << e.what() << std::endl;
+    }catch (const Bureaucrat::GradeTooLowException &e){
         std::cerr << e.what() << std::endl;
     }
-    // // ShrubberyCreationForm kaghit(target);
-    // soufiix.signForm(haha);
-    // // std::cout << "tale3 nivo chwia" << std::endl;
-    // soufiix.increment();
-    // try {
-    //     haha.execute(soufiix);
-    // }catch (const Bureaucrat::GradeTooHighException &e){
-    //     std::cerr << e.what() << std::endl;
-    // }catch (const Bureaucrat::GradeTooLowException &e){
-    //     std::cerr << e.what() << std::endl;
-    // }
-    // std::cout << "sini hna" << std::endl;
-    // soufiix.signForm(kaghit);
-    // try{
-    //     kaghit.execute(soufiix);
-    // }catch (const AForm::formNotSigned &e){
-    //     std::cerr << e.what() << std::endl;
-    // }catch (const Bureaucrat::GradeTooLowException &e){
-    //     std::cerr << e.what() << std::endl;
-    // }
+
+    std::cout << wati9a1 << std::endl;
 }

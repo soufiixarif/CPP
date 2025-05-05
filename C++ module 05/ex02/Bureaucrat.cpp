@@ -67,16 +67,12 @@ void Bureaucrat::signForm(AForm &_AForm){
     }
 }
 
-void Bureaucrat::executeForm(AForm const &form){
+void Bureaucrat::executeForm(AForm const &form){//problem here
     if (form.getSign() == false)
         throw AForm::formNotSigned();
     else if (this->getGrade() > form.getGradeToExecute())
         throw Bureaucrat::GradeTooLowException();
-    try{
-        form.execute(*this);
-    }catch(Bureaucrat::GradeTooLowException &e){
-        std::cerr << e.what() << std::endl;
-    }
+    form.execute(*this);
     std::cout << this->getName() << " execute " << form.getName() << std::endl;
 }
 

@@ -39,4 +39,4 @@ class AForm{
         };
 };
 
-std::ostream& operator<<(std::ostream &out, const Bureaucrat &other);
+std::ostream& operator<<(std::ostream &out, const AForm &other);

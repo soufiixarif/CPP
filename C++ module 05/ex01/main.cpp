@@ -3,16 +3,14 @@
 
 int main(){
     Bureaucrat soufiix("soufiix", 2);
-    Form wati9a("kaghit", false, 1,1);
-    std::cout << "tale3 nivo chwia" << std::endl;
-    soufiix.increment();
-    std::cout << "sini hna" << std::endl; 
-    soufiix.signForm(wati9a);
-    soufiix.signForm(wati9a);
-    try{
-        soufiix.increment();
-    }catch (const Bureaucrat::GradeTooHighException &e){
-        std::cerr << e.what() << std::endl;
-    }
-    std::cout << soufiix;
+    Form bill("wati9a mliha", false, 2, 1);
+
+    soufiix.signForm(bill);
+    // try{
+    //     bill.beSigned(soufiix);
+    // }catch (const Form::GradeTooLowException &e){
+    //     std::cerr << e.what() << std::endl;
+    // }
+    std::cout << soufiix << std::endl;
+    std::cout << bill << std::endl;
 }
