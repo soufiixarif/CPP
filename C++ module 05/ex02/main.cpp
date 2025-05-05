@@ -5,10 +5,10 @@
 #include "PresidentialPardonForm.hpp"
 
 int main(){
-    std::string target = "Arif";
-    Bureaucrat soufiix("soufiix", 138);
+    std::string target = "lwati9a lmliha";
+    Bureaucrat soufiix("soufiix", 6);
 
-    ShrubberyCreationForm wati9a1(target);
+    PresidentialPardonForm wati9a1(target);
 
     soufiix.signForm(wati9a1);
     soufiix.increment();

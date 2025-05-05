@@ -18,4 +18,9 @@ class Intern{
         AForm *creatPresidentialPardonForm(std::string target);
         AForm* makeForm(std::string formName, std::string target);
         typedef AForm* (Intern::*ptrToMem)(std::string);
+
+        class formNotFound : std::exception{
+            public :
+                const char *what() const throw();
+        };
 };

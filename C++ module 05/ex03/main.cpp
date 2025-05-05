@@ -11,9 +11,11 @@ int main(){
     AForm* wati9a;
     Bureaucrat soufiix("soufiix", 1);
 
-    wati9a = hofar.makeForm("shrubbery creation", "soufiix");
-    if (wati9a == NULL)
-        return 1;
+    try {
+        wati9a = hofar.makeForm("presidential pardon", "soufiix");
+    }catch (const Intern::formNotFound &e){
+        std::cerr << e.what() << std::endl;
+    }
     soufiix.signForm(*wati9a);
     wati9a->execute(soufiix);
 }
