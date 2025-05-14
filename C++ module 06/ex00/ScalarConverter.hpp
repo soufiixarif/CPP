@@ -1,6 +1,8 @@
 #pragma once
 
 #include <iostream>
+#include <sstream>
+#include <iomanip>
 
 class ScalarConverter{
     public:
@@ -9,5 +11,5 @@ class ScalarConverter{
         ScalarConverter &operator=(const ScalarConverter &other);
         ~ScalarConverter();
         
-        static void convert(std::string &literal);
+        static void convert(std::string literal);
 };

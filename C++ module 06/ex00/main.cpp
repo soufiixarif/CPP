@@ -6,4 +6,5 @@ int main(int ac, char **av){
         return 1;
     }
     ScalarConverter::convert(av[1]);
+    
 }
