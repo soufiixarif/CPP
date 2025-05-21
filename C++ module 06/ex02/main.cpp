@@ -55,7 +55,7 @@ void identify(Base& p){
 }
 
 int main(){
-    std::srand(std::time(0));
+    srand(time(0));
     Base *AA = generate();
     Base *BB = generate();
     Base *CC = generate();
