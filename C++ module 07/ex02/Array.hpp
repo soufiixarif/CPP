@@ -1,19 +1,66 @@
 #pragma once
+#include <exception>
+#include <iostream>
 
 template <typename T> class Array{
     private:
         T *arr;
-        unsigned int len;
+        size_t len;
     public:
         Array(){
             len = 0;
-            arr = new[len];
+            arr = new T[len]();
         }
-        Array(unsigned int n){
-            len = n;
-            arr = new[len];
+
+        Array(size_t n){
+            if (n > 0){
+                len = n;
+                arr = new T[n]();
+            }
+            else
+                arr = NULL;
         }
-        Array(const Array &other);
-        Array &operator=(const Array &other);
-        ~Array();
+
+        Array &operator=(const Array &other){
+            if (this == &other)
+                return *this;
+            if (arr)
+                delete []arr;
+            len = other.len;
+            arr = new T[len]();
+            for (size_t i = 0; i < len; i++)
+                arr[i] = other.arr[i];
+            return *this;
+        }
+
+        Array(const Array &other){
+            *this = other;
+        }
+
+        ~Array(){
+            delete[] arr;
+        }
+
+        const T & operator[](size_t i)const {
+            if (i > len)
+                throw outOfbounds();
+            return arr[i];
+        }
+
+        T & operator[](size_t i){
+            if (i > len)
+                throw outOfbounds();
+            return arr[i];
+        }
+
+        size_t getSize(){
+            return len;
+        }
+
+        class outOfbounds: public std::exception{
+            public:
+                const char *what() const throw(){
+                    return "the index given is out of bounds!";
+                }
+        };
 };
