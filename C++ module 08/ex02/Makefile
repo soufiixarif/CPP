@@ -1,6 +1,6 @@
 NAME = Mutated
-SRC =  main.cpp Span.cpp
-INCLUDES = Span.hpp
+SRC =  main.cpp 
+INCLUDES = MutantStack.hpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 CFLAGS = -std=c++98  -Wall -Wextra -Werror 
