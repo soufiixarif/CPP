@@ -77,12 +77,14 @@ bool is_displayable(char c){
     return (c >= 32 && c <= 126);
 }
 
-void ft_cout(bool int_overf, bool float_overf, bool double_overf, bool impossible, char c, int i, float f, double d){
+void ft_cout(bool char_overf, bool int_overf, bool float_overf, bool double_overf, bool impossible, char c, int i, float f, double d){
     if (impossible){
         std::cout << "char: impossible\n" << "int: impossible\n" << "float: nanf\n" << "double: nan" << std::endl;
         return ;
     }
-    if (!is_displayable(c))
+    if (char_overf)
+        std::cout << "char: impossible" << std::endl;
+    else if (!is_displayable(c))
         std::cout << "char: Non displayable" << std::endl;
     else
         std::cout << "char: " << "\'" << c << "\'" << std::endl;
@@ -101,13 +103,25 @@ void ft_cout(bool int_overf, bool float_overf, bool double_overf, bool impossibl
         
 }
 
+bool int_overflow(double f){
+    if (f > INT_MAX || f < INT_MIN)
+        return true;
+    return false;
+}
+
+bool char_overflow(double f){
+    if (f > CHAR_MAX || f < CHAR_MIN)
+        return true;
+    return false;
+}
+
 void ScalarConverter::convert(std::string literal){
     char c = 0;
     int i = 0;
     float f = 0.0f;
     double d = 0.0;
     bool impossible = false;
-    bool int_overf = false, float_overf = false, double_overf = false;
+    bool int_overf = false, float_overf = false, double_overf = false, char_overf = false;
     std::stringstream store(literal);
     if (literal == "-inff" || literal == "+inff" || literal == "nanf" || \
         literal == "-inf" || literal == "+inf" || literal == "nan")
@@ -122,7 +136,10 @@ void ScalarConverter::convert(std::string literal){
         store >> i;
         if (store.fail())
             int_overf = true;
-        c = static_cast<char>(i);
+        if (char_overflow(i))
+            char_overf = true;
+        else
+            c = static_cast<char>(i);
         f = static_cast<float>(i);
         d = static_cast<double>(i);
     }
@@ -130,35 +147,31 @@ void ScalarConverter::convert(std::string literal){
         store >> f;
         if (store.fail())
             float_overf = true;
-        c = static_cast<char>(f);
-        int k;
-        store >> k;
-        if (store.fail())
+        if (char_overflow(i))
+            char_overf = true;
+        else
+            c = static_cast<char>(i);
+        if (int_overflow(f))
             int_overf = true;
         else
             i = static_cast<int>(f);
         d = static_cast<double>(f);
     }
     else if(isDouble(literal)){
-        std::cout << "double\n";
         store >> d;
         if (store.fail())
             double_overf = true;
-        c = static_cast<char>(d);
-        int j;
-        store >> j;
-        if (store.fail())
+        if (char_overflow(i))
+            char_overf = true;
+        else
+            c = static_cast<char>(i);
+        if (int_overflow(d))
             int_overf = true;
         else
-            i = static_cast<int>(d);  
-        float p;
-        store >> p;
-        if (store.fail())
-            float_overf = true;
-        else
-            f = static_cast<float>(d);
+            i = static_cast<int>(d); 
+        f = static_cast<float>(d);
     }
     else
         impossible = true;
-    ft_cout(int_overf, float_overf, double_overf, impossible, c, i, f, d);
+    ft_cout(char_overf, int_overf, float_overf, double_overf, impossible, c, i, f, d);
 }
