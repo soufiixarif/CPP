@@ -60,7 +60,6 @@ int main(){
     Base *BB = generate();
     Base *CC = generate();
 
-
     std::cout << "---------------------identify by pointer--------------------" << std::endl;
 
     identify(AA);
