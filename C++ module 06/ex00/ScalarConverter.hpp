@@ -4,14 +4,15 @@
 #include <cstdlib>
 #include <sstream>
 #include <iomanip>
-#include <climits>
+#include <limits>
 
 class ScalarConverter{
-    public:
+    private:
         ScalarConverter();
         ScalarConverter(const ScalarConverter &other);
         ScalarConverter &operator=(const ScalarConverter &other);
         ~ScalarConverter();
+    public:
         
         static void convert(std::string literal);
 };

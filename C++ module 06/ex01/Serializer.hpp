@@ -3,6 +3,7 @@
 
 struct Data{
     int i;
+    std::string name;
 };
 
 class Serializer{

@@ -34,7 +34,10 @@ template <typename T> class Array{
         }
 
         Array(const Array &other){
-            *this = other;
+            len = other.len;
+            arr = new T[len]();
+            for (size_t i = 0; i < len; i++)
+                arr[i] = other.arr[i];
         }
 
         ~Array(){
@@ -53,7 +56,7 @@ template <typename T> class Array{
             return arr[i];
         }
 
-        size_t getSize(){
+        size_t size()const {
             return len;
         }
 

@@ -116,16 +116,17 @@ void ft_cout(bool char_overf, bool int_overf, bool float_overf, bool double_over
 }
 
 bool int_overflow(double f){
-    if (f > INT_MAX || f < INT_MIN)
+    if (f > std::numeric_limits<int>::max() || f < std::numeric_limits<int>::min())
         return true;
     return false;
 }
 
 bool char_overflow(double f){
-    if (f > CHAR_MAX || f < CHAR_MIN)
+    if (f > std::numeric_limits<char>::max() || f < std::numeric_limits<char>::min())
         return true;
     return false;
 }
+
 
 void ScalarConverter::convert(std::string literal){
     double d = 0.0;
@@ -135,12 +136,10 @@ void ScalarConverter::convert(std::string literal){
     if (literal == "-inff" || literal == "+inff" || literal == "nanf" || \
         literal == "-inf" || literal == "+inf" || literal == "nan")
         impossible_over = true;
-    if (isChar(literal)){
-        std::cout << "char\n";
-        d = static_cast<double>(literal[0]);
+    else if (isChar(literal)){
+        d = (literal[0]);
     }
     else if (isInt(literal) || isFloat(literal) || isDouble(literal)){
-        std::cout << "int\n";
         store >> d;
         if (store.fail())
             double_overf = true;

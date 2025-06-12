@@ -7,6 +7,7 @@ void print_inside(const int &x){
 void incriment_inside(int &x){
     x++;
 }
+
 int main(){
     int ptr[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     ::iter(ptr, 10, print_inside);

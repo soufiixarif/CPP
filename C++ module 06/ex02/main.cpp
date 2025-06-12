@@ -5,6 +5,7 @@
 #include "C.hpp"
 
 Base * generate(void){
+    srand(time(0));
     int random = std::rand() % 3;
     if (random == 1){
         std::cout << "Generat A object" << std::endl;
@@ -55,22 +56,15 @@ void identify(Base& p){
 }
 
 int main(){
-    srand(time(0));
     Base *AA = generate();
-    Base *BB = generate();
-    Base *CC = generate();
 
     std::cout << "---------------------identify by pointer--------------------" << std::endl;
 
     identify(AA);
-    identify(BB);
-    identify(CC);
     
     std::cout << "----------------------identify by reference-----------------" << std::endl;
     
     identify(*AA);
-    identify(*BB);
-    identify(*CC);
 
-
+    delete AA;
 }
