@@ -1,10 +1,11 @@
 #pragma once
 #include <iostream>
+#include <sstream>
 #include <stack>
 
 class RPN {
     private:
-        std::stack<double> stk;
+        std::stack<int> stk;
     public:
         RPN();
         RPN(const RPN &other);

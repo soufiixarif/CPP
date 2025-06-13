@@ -5,7 +5,6 @@ int main(int ac, char **av){
         std::cout << "ARG ERROR" << std::endl;
         return 1;
     }
-
     try{
         RPN _rpn;
         _rpn.operationProcessing(av[1]);
