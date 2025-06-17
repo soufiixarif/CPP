@@ -17,8 +17,10 @@ template <typename T> class Array{
                 len = n;
                 arr = new T[n]();
             }
-            else
+            else{
+                len = 0;
                 arr = NULL;
+            }
         }
 
         Array &operator=(const Array &other){
@@ -45,13 +47,13 @@ template <typename T> class Array{
         }
 
         const T & operator[](size_t i)const {
-            if (i > len)
+            if (i >= len)
                 throw outOfbounds();
             return arr[i];
         }
 
         T & operator[](size_t i){
-            if (i > len)
+            if (i >= len)
                 throw outOfbounds();
             return arr[i];
         }
