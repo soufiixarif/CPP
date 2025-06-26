@@ -5,6 +5,7 @@ int main(int ac, char **av){
 
     try{
         to_sort.sort(ac, av);
+        // to_sort.print_containers();
     }catch(const std::exception &e){
         std::cerr << e.what() << std::endl;
     }

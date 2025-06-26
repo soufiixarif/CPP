@@ -11,7 +11,7 @@ class PmergeMe{
     private:
         std::vector<int> vec;
         std::deque<int> deq;
-        bool parsInputNstorData(int ac, char **av);
+        bool parsInputNstortData(int ac, char **av);
         void insertMergeVector();
     public :
         PmergeMe();
