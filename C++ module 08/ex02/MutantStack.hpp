@@ -3,7 +3,7 @@
 #include <stack>
 
 template <typename T>
-class MutantStack: public std::stack<T>{
+class MutantStack: public std::stack<T> {
     public:
     typedef typename std::deque<T>::iterator iterator;
     MutantStack(){}

@@ -1,8 +1,9 @@
 {
     "files.associations": {
-        "stdexcept": "cpp",
-        "iosfwd": "cpp",
+        "iostream": "cpp",
         "ostream": "cpp",
+        "optional": "cpp",
+        "variant": "cpp",
         "array": "cpp",
         "atomic": "cpp",
         "bit": "cpp",
@@ -23,6 +24,8 @@
         "cwchar": "cpp",
         "cwctype": "cpp",
         "deque": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
         "map": "cpp",
         "string": "cpp",
         "unordered_map": "cpp",
@@ -34,7 +37,6 @@
         "memory": "cpp",
         "memory_resource": "cpp",
         "numeric": "cpp",
-        "optional": "cpp",
         "random": "cpp",
         "ratio": "cpp",
         "string_view": "cpp",
@@ -43,20 +45,19 @@
         "type_traits": "cpp",
         "utility": "cpp",
         "format": "cpp",
-        "fstream": "cpp",
         "initializer_list": "cpp",
         "iomanip": "cpp",
-        "iostream": "cpp",
+        "iosfwd": "cpp",
         "istream": "cpp",
         "limits": "cpp",
         "new": "cpp",
         "numbers": "cpp",
         "span": "cpp",
         "sstream": "cpp",
+        "stdexcept": "cpp",
         "streambuf": "cpp",
         "text_encoding": "cpp",
         "cinttypes": "cpp",
-        "typeinfo": "cpp",
-        "variant": "cpp"
+        "typeinfo": "cpp"
     }
 }

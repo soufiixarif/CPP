@@ -1,9 +1,11 @@
 #pragma once 
 #include <iostream>
+#include <iomanip>
 #include <vector>
 #include <deque>
-#include <ctime>
+#include <sys/time.h>
 #include <algorithm>
+#include <limits>
 #include <sstream>
 #include <exception>
 
@@ -11,8 +13,14 @@ class PmergeMe{
     private:
         std::vector<int> vec;
         std::deque<int> deq;
-        bool parsInputNstortData(int ac, char **av);
+        std::vector<int> sorted;
+        struct timeval vectorStart, vectorEnd;
+        struct timeval dequeStart, dequeEnd;
+        bool parsInputNstortDataVec(int ac, char **av);
+        bool parsInputNstortDataDeq(int ac, char **av);
         void insertMergeVector();
+        void insertMergeDeque();
+        void displayOutput();
     public :
         PmergeMe();
         PmergeMe(const PmergeMe &other);
@@ -20,5 +28,10 @@ class PmergeMe{
         ~PmergeMe();
 
         void sort(int ac, char **av);
-        void print_containers();
+        template <typename T>
+        void print_containers(const T &container, const std::string &title){
+            std::cout << "====================" << title << "====================" << std::endl;
+            for(size_t i = 0; i < container.size(); i++)
+                std::cout << container[i] << std::endl;
+        };
 };

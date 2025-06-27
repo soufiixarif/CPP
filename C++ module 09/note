@@ -1,0 +1,25 @@
+
+void PmergeMe::generateJacobsthalInsertionOrderV(int n, std::vector<int>& jacob) 
+{
+    if (n >= 0)
+        jacob.push_back(0);
+    if (n >= 1)
+        jacob.push_back(1);
+
+    int a = 1, b = 1;
+    while (771) 
+    {
+        int next = a + 2 * b;
+        if (next > n)
+            break;
+
+        for (int j = next - 1; j > a; --j) 
+        {
+            if (j <= n)
+                jacob.push_back(j);
+        }
+        jacob.push_back(next);
+        a = b;
+        b = next;
+    }
+}

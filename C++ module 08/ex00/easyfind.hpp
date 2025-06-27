@@ -7,8 +7,8 @@
 
 template <typename T>
 int easyfind(T &arg, int n){
-    typename T::iterator holder = std::find(arg.begin(), arg.end(), n);
-    if(holder == arg.end())
+    typename T::iterator it = std::find(arg.begin(), arg.end(), n);
+    if(it == arg.end())
         throw std::out_of_range("element not found");
-    return *holder;
+    return *it;
 }
