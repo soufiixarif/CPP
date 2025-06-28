@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <cstdlib> 
+#include <sstream>
 #include <stack>
 
 class RPN {
