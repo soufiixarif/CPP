@@ -5,6 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
+#include <exception>
 
 class BitcoinExchange{
     private :
@@ -21,5 +22,4 @@ class BitcoinExchange{
 
         void dataProcessing(std::string inputFileName);
         void printResult(std::string date, double value);
-        void printData();// to remove it later
 };

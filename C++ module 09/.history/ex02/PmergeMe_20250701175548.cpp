@@ -109,7 +109,7 @@ void    mergeVec(std::vector<std::pair<int,int> > &pairs, int l, int m, int r){
     std::vector<std::pair<int, int> > vecL(len1), vecR(len2);
 
     for (int i = 0; i < len1; i++)
-        vecL[i] = pairs[l + i];
+        vecL[i] = pairs[l + i]; 
     for (int i = 0; i < len2; i++)
         vecR[i] = pairs[m + 1 + i];
     
@@ -338,6 +338,7 @@ std::deque<int> jacobsthalgeneratorDeq(int pendSize){//to change it later
     for (size_t i = 1; i < jacob.size(); ++i) {
         seqIndex.push_back(jacob[i]);
 
+        // Insert the gap between jacob[i] and jacob[i+1] in reverse
         int from = jacob[i] - 1;
         int to = jacob[i - 1];
         for (int k = from; k > to; --k) {
@@ -345,6 +346,7 @@ std::deque<int> jacobsthalgeneratorDeq(int pendSize){//to change it later
         }
     }
 
+    // Add remaining tail values if any
     int lastJacob = jacob.back();
     for (int i = lastJacob + 1; i <= pendSize; ++i) {
         seqIndex.push_back(i);
@@ -385,7 +387,7 @@ void PmergeMe::insertMergeDeque(){
     for (size_t i = 0; i < JacobIndex.size(); ++i) {
         int pendIndex = JacobIndex[i];
         if (pendIndex >= static_cast<int>(pend_chain.size()))
-            continue;
+            continue; // skip if out of range
 
         int value = pend_chain[pendIndex];
 

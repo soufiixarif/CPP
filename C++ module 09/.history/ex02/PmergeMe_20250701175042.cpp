@@ -109,7 +109,7 @@ void    mergeVec(std::vector<std::pair<int,int> > &pairs, int l, int m, int r){
     std::vector<std::pair<int, int> > vecL(len1), vecR(len2);
 
     for (int i = 0; i < len1; i++)
-        vecL[i] = pairs[l + i];
+        vecL[i] = pairs[l + i]; 
     for (int i = 0; i < len2; i++)
         vecR[i] = pairs[m + 1 + i];
     
@@ -215,8 +215,8 @@ void PmergeMe::insertMergeVector(){
 
     for (size_t i = 0; i < JacobIndex.size(); ++i) {
         int pendIndex = JacobIndex[i];
-        if (pendIndex >= static_cast<int>(pend_chain.size()))
-            continue;
+        // if (pendIndex >= static_cast<int>(pend_chain.size()))
+        //     continue;
 
         int value = pend_chain[pendIndex];
 
@@ -328,6 +328,7 @@ std::deque<int> jacobsthalgeneratorDeq(int pendSize){//to change it later
     jacob.push_back(0);
     jacob.push_back(1);
 
+    // Generate all Jacobsthal numbers ≤ pendSize
     while (true) {
         int next = jacob[jacob.size() - 1] + 2 * jacob[jacob.size() - 2];
         if (next > pendSize)
@@ -335,9 +336,11 @@ std::deque<int> jacobsthalgeneratorDeq(int pendSize){//to change it later
         jacob.push_back(next);
     }
 
+    // Add Jacobsthal-based insertion order
     for (size_t i = 1; i < jacob.size(); ++i) {
         seqIndex.push_back(jacob[i]);
 
+        // Insert the gap between jacob[i] and jacob[i+1] in reverse
         int from = jacob[i] - 1;
         int to = jacob[i - 1];
         for (int k = from; k > to; --k) {
@@ -345,6 +348,7 @@ std::deque<int> jacobsthalgeneratorDeq(int pendSize){//to change it later
         }
     }
 
+    // Add remaining tail values if any
     int lastJacob = jacob.back();
     for (int i = lastJacob + 1; i <= pendSize; ++i) {
         seqIndex.push_back(i);
@@ -385,7 +389,7 @@ void PmergeMe::insertMergeDeque(){
     for (size_t i = 0; i < JacobIndex.size(); ++i) {
         int pendIndex = JacobIndex[i];
         if (pendIndex >= static_cast<int>(pend_chain.size()))
-            continue;
+            continue; // skip if out of range
 
         int value = pend_chain[pendIndex];
 

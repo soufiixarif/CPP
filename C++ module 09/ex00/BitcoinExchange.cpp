@@ -11,7 +11,6 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other){
         return *this;
     this->Data = other.Data;
     return *this;
-
 }
 BitcoinExchange::~BitcoinExchange(){
 
@@ -27,7 +26,9 @@ void BitcoinExchange::getData(const std::string &DataName){
     if (!input.is_open())
         throw std::runtime_error("ERROR: Can't open database file");
     std::string line;
+    bool checker = false;
     while (getline(input, line)) {
+        checker = true;
         std::stringstream ss(line);
         std::string date;
         std::string priceStr;
@@ -37,16 +38,11 @@ void BitcoinExchange::getData(const std::string &DataName){
         std::stringstream(priceStr) >> price;
         this->Data[date] = price;
     }
+    if (!checker)
+        throw std::runtime_error("empty database");
     std::map<std::string, double>::iterator it = this->Data.end();
     --it;
     this->Data.erase(it);
-}
-
-void BitcoinExchange::printData(){
-    std::map<std::string, double>::iterator it;
-    for (it = Data.begin(); it != Data.end(); it++){
-        std::cout << "date: " << it->first << " | price: " << it->second << std::endl;
-    }
 }
 
 //------------------------------------dataProcessing --------------------------------------
@@ -67,6 +63,8 @@ int checkLine(std::string line){
     std::string part;
     int wordCount = 0;
 
+    if (!line.empty() && (line[10] != ' ' || line[12] != ' ' || line[13] == ' '))
+        return 0;
     while (getline(ss, part, '|'))
         wordCount++;
     return (wordCount == 2);
@@ -107,9 +105,9 @@ bool validDate(std::string date){
         return false;
     if (month < 1 || month > 12)
         return false;
-    if (year < 2009 || (year == 2009 && (month == 1 && day < 2)))
-        return false;
     if (day < 1 || day > dayInMonth(month, year))
+        return false;
+    if (year < 2009 || (year == 2009 && (month == 1 && day < 2)))
         return false;
     return true;
 }
@@ -121,14 +119,17 @@ void BitcoinExchange::printResult(std::string date, double value){
     else if (it != this->Data.end()){
         --it;
         std::cout << date << " => " << value << " = " << value * it->second << std::endl;
-    }else
-        std::cout << "input out of range" << std::endl;
+    }else{
+        it = this->Data.end();
+        --it;
+        std::cout << date << " => " << value << " = " << value * it->second << std::endl;
+    }
 }
 
 void BitcoinExchange::dataProcessing(std::string inputFileName){
     std::ifstream input(inputFileName.c_str());
     if (!input.is_open())
-    throw std::runtime_error("ERROR: can't open the input file");
+        throw std::runtime_error("ERROR: can't open the input file");
     std::string line;
     if (getline(input, line).fail()){
         input.close();
@@ -162,7 +163,7 @@ void BitcoinExchange::dataProcessing(std::string inputFileName){
             svalue >> value;
             if (svalue.fail())
                 std::cerr << "Error: bad input => " << line << std::endl;
-            else if (value < 0)
+            if (valueStr[1] == '-')
                 std::cerr << "Error: not a positive number." << std::endl;
             else if (value > 1000)
                 std::cerr << "Error: too large a number." << std::endl;
@@ -170,4 +171,5 @@ void BitcoinExchange::dataProcessing(std::string inputFileName){
                 printResult(date, value);
         }
     }
+    input.close();
 }

@@ -109,7 +109,7 @@ void    mergeVec(std::vector<std::pair<int,int> > &pairs, int l, int m, int r){
     std::vector<std::pair<int, int> > vecL(len1), vecR(len2);
 
     for (int i = 0; i < len1; i++)
-        vecL[i] = pairs[l + i];
+        vecL[i] = pairs[l + i]; 
     for (int i = 0; i < len2; i++)
         vecR[i] = pairs[m + 1 + i];
     
