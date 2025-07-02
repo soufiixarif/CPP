@@ -65,6 +65,8 @@ int checkLine(std::string line){
 
     if (!line.empty() && (line[10] != ' ' || line[12] != ' ' || line[13] == ' '))
         return 0;
+    if (!isdigit(line[5]) ||!isdigit(line[6]) ||!isdigit(line[8]) ||!isdigit(line[9]))
+        return 0;
     while (getline(ss, part, '|'))
         wordCount++;
     return (wordCount == 2);
@@ -126,6 +128,17 @@ void BitcoinExchange::printResult(std::string date, double value){
     }
 }
 
+bool isValidValue(std::string value){
+    size_t i = 1;
+    if (value[i] == '+' || value[i] == '-')
+        i = 2;
+    for(;i < value.size();i++){
+        if (!isdigit(value[i]))
+            return false;
+    }
+    return true;
+}
+
 void BitcoinExchange::dataProcessing(std::string inputFileName){
     std::ifstream input(inputFileName.c_str());
     if (!input.is_open())
@@ -160,15 +173,19 @@ void BitcoinExchange::dataProcessing(std::string inputFileName){
             getline(ss, valueStr);
             double value = 0.0;
             std::stringstream svalue(valueStr);
-            svalue >> value;
-            if (svalue.fail())
+            if (!isValidValue(valueStr))
                 std::cerr << "Error: bad input => " << line << std::endl;
-            if (valueStr[1] == '-')
-                std::cerr << "Error: not a positive number." << std::endl;
-            else if (value > 1000)
-                std::cerr << "Error: too large a number." << std::endl;
-            else
-                printResult(date, value);
+            else{
+                svalue >> value;
+                if (svalue.fail())
+                    std::cerr << "Error: bad input => " << line << std::endl;
+                else if (valueStr[1] == '-')
+                    std::cerr << "Error: not a positive number." << std::endl;
+                else if (value > 1000)
+                    std::cerr << "Error: too large a number." << std::endl;
+                else
+                    printResult(date, value);
+            }
         }
     }
     input.close();

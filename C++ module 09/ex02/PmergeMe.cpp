@@ -182,6 +182,10 @@ std::vector<int> jacobsthalgeneratorVec(int pendSize){
     }
     if (seqIndex.size() > 2)
         seqIndex.erase(seqIndex.begin() + 2);
+    
+    for (int i = 0; i < (int)seqIndex.size(); i++)
+        std::cout << seqIndex[i] << " ";
+    std::cout << std::endl;
     return seqIndex;
 }
 
@@ -210,9 +214,9 @@ void PmergeMe::insertMergeVector(){
 
     makeMainPendVec(pairs, main_chain, pend_chain);
 
-
     std::vector<int> JacobIndex = jacobsthalgeneratorVec(pend_chain.size());
 
+    print_containers(pend_chain,"PEND");
     for (size_t i = 0; i < JacobIndex.size(); ++i) {
         int pendIndex = JacobIndex[i];
         if (pendIndex >= static_cast<int>(pend_chain.size()))
